@@ -66,6 +66,7 @@ public class ParserTest {
 	public void testBracketStripping() {	
 		assertEquals(3, Parser.parse("(2+1)"), 0.0001);
 		assertEquals(-3, Parser.parse("(2-5)"), 0.0001);
+		assertEquals(4, Parser.parse("(2*5) - (3*2)"), 0.0001);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)

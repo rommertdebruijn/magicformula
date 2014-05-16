@@ -10,15 +10,30 @@ import java.util.Scanner;
  */
 public class Parser {
 	
-	private static String operators = "+-*/^";
-	
     public static void main( String[] args ) {
-        System.out.print("Please type a formula: ");
-        Scanner scanner = new Scanner(System.in);
-        String formula = scanner.nextLine();
-        double result = Parser.parse(formula);
-        System.out.println("Result: " + result);
-        scanner.close();
+    	boolean go = true;
+		Scanner scanner = null;
+    	try {
+	    	while (go) {
+	    		try {
+		            System.out.print("Please type a formula: ");
+		            scanner = new Scanner(System.in);
+		            String command = scanner.nextLine();
+		            if ("quit".equals(command)) {
+		            	System.exit(0);
+		            	
+		            }
+		            double result = Parser.parse(command);
+		            System.out.println("Result: " + result);
+		    	} catch(IllegalArgumentException e) {
+		    		System.out.println("Bad input");
+		    	}
+	    	}
+		} finally {
+	    	if (scanner != null) {
+				scanner.close();
+			}
+    	}
     }
 
 	public static double parse(final String orgFormula) {
